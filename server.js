@@ -10,7 +10,7 @@ const path=require("path");
 require("dotenv").config();
 
 const JWT_SECRET =process.env.JWT_SECRET;
-console.log(JWT_SECRET)
+
 
 const app=express();
 const dbPath=path.join(__dirname,"notes.db")
@@ -19,6 +19,8 @@ console.log(dbPath)
 app.use(cors({ origin: "*" ,credentials:true}));
 
 app.use(express.json());
+
+const PORT=process.env.PORT || 5501;
 
 let db=null;
 
@@ -49,7 +51,7 @@ const initializeDbAndServer=async ()=>{
             `);
 
             console.log("DB initiated")
-        app.listen(5501,()=>{
+        app.listen(PORT,()=>{
             console.log("Server Initialized")
         });
         
